@@ -1,0 +1,368 @@
+*{
+    margin: 0;
+    padding:0; 
+    box-sizing: border-box;
+}
+
+body{
+    background-size: cover;
+    background-repeat: repeat-y;
+   background-image: url(./Assets/BACKGROUND_BLUE.png);
+   
+}  
+
+
+
+/* TITULO PATITAS */
+
+.padre {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* background: black; */
+   background-image: url(./Assets/aside3.jpg);
+   border: solid;
+   background-size: contain;
+}
+
+.italic a {
+    color: rgb(253, 253, 253);
+    font-family: roboto-regular; 
+    font-size: 10vmax;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-decoration:none;
+    
+    
+}
+
+@font-face { font-family: roboto-regular; 
+    src: url('./Assets/ennobled.ttf');
+    
+} 
+
+.miqueas { 
+    height: 60px;
+    text-align: right;
+    position:fixed;  
+    
+}
+   
+  
+
+
+
+ 
+
+  /* OPCIONES-MENU */
+
+
+ .menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;  
+    /* border:10px double rgb(155, 155, 155); */
+    flex-direction: row;
+   justify-content:space-around;
+  
+   
+   
+} 
+
+
+.menu--a {
+    width: 150px;
+    height: 50px; 
+    border: 1px solid rgb(3, 3, 3);
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    z-index: 0;
+    transition: 1s;
+    text-decoration: none;
+    color: rgb(252, 252, 252);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+
+  .menu--a:hover {
+    background: rgb(248, 247, 247);
+    color: black;
+  
+  }
+
+
+
+    /* MEDIO */
+
+
+.icon {
+    padding: 8rem 2rem 10rem 2rem;
+    flex-direction: row;
+    justify-content: space-evenly;
+    display: flex;   
+    flex-wrap: wrap;
+}
+
+div i img {
+    width: 100px;
+    height: auto;
+    /* display: block; */
+    
+    
+}
+
+
+
+ 
+
+
+   /* IMAGENES CSS */
+
+/* 
+.picture {
+    padding: 50px 0px 50px 0px ;
+} */
+
+header {
+    background-image: url(./Assets/MADERA_VERTICAL.png);
+    background-size: contain;
+    border: black solid;
+}
+
+.imagen img {
+    width: 500px;
+  /* margin-bottom: 20px; */
+    border-radius: 50%;
+    filter: grayscale(100%);
+    padding: 20px;
+    
+}
+
+.imagen {   
+    display: flex; 
+    flex-wrap: wrap; 
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.perritos:hover {
+    filter: opacity(100%);
+    /* box-shadow: rgb(255, 255, 255) 0 3px 15px 3px; */
+   
+    -webkit-transform:scale(1.1);transform:scale(1.1);
+   
+}
+
+
+
+
+
+/* ASIDE INFO EXTRA DE LA PAGINA  */
+
+
+aside {
+  
+    display: flex;
+    flex-wrap: wrap;
+    /* height: 500px; */
+    /* max-width: 100% ; */
+    /* background:rgb(33, 82, 102) ; */
+    border: solid white;
+    justify-content: space-evenly;
+    background-image: url();
+     
+
+}
+
+
+.as {
+display: flex;
+/* background: lightcoral; */
+height: 800px;
+
+float: left;
+display: flex;
+flex-wrap: wrap;
+/* margin: 15px; */
+}
+
+ 
+
+/* PIE DE PAGINA +INFO */
+
+
+.footer {
+    background: rgb(0, 0, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* flex-direction: row; */
+    
+}
+
+.info{
+    display: flex;
+    flex-wrap: wrap;
+    /* float: left; */
+    /* list-style-type: none; */
+    
+    /* flex-wrap: wrap; */
+    
+}
+
+
+.lista { 
+    padding:0px 100px 0px 100px;
+
+  }
+ 
+.info__f {
+    color: white;
+    text-decoration:none;
+}
+
+
+
+
+
+/* PENULTIMO */
+
+.penultimo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;;
+    height: 250px; 
+    flex-direction: row;
+    background: violet;
+    justify-content: center;
+    background-image: url(./Assets/aside3.jpg);
+    border: solid;
+    background-size: contain;
+}
+
+.iconos {
+     width: 80px;
+     float: center;
+     padding: 25px 5px 0px 5px;   
+     /* transition: all 1s ease 1s; */
+     /* transition-duration: 2s; */
+     text-align: center;
+
+}
+
+
+
+
+
+
+
+/* GIF DEL PERRO */
+
+
+.gif {
+    /* display: center; 
+    flex-wrap: wrap;  */
+   text-align: center; 
+   /* left: 500cm; */
+   /* background-color: white; */
+}
+
+.chiquito {
+    display: center; 
+    flex-wrap: wrap; 
+    justify-content: space-around;
+    width: 60px;
+ 
+}
+
+
+
+
+
+
+
+[class*="col-"] {width: 100% }
+
+
+ @media only screen and (min-width: 768px) { 
+    
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;} 
+  } 
+
+
+
+
+
+  /* celular */
+
+
+
+@media only screen and (max-width: 390px) {
+    *{
+        margin: 0;
+        padding:0; 
+        box-sizing: border-box;
+    }
+    
+    body{
+        background-size: cover;
+        background-repeat: repeat-y;  
+        background-image: url(./Assets/BACKGROUND_BLUE.png);
+
+    }
+
+/* TITULO PATITAS */
+
+.padre {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* background: black; */
+   /* background-image: url(./Assets/aside3.jpg); */
+   border: solid;
+   /* background-size: contain; */
+  }
+
+.italic a {
+    color: rgb(246, 243, 243);
+    font-family: roboto-regular; 
+    font-size: 10vmax;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-decoration:none;
+    }
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+}

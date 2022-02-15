@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: black;
+    /* background-image: url(./assets/bg-signup.jpg); */
+    /* background-repeat: no-repeat; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.menu-button{
+    margin: 0 auto;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    /* width: 40px; */
+    padding: 10px;
+    height: 86px;
+    border-radius: 10px;
+    background: #2e89b9  ;
+    cursor: pointer;
+    
+}
+
+.menu-button p {
+    
+    width: 40px;
+    height: 30px;
+    /* background: rgb(155, 132, 29); */
+}
+
+.patitas {
+    padding: 0px 0px 10px;
+    font-size: 50px;
+    font-family: roboto-regular;
+}
+@font-face { font-family: roboto-regular; 
+    src: url("./assets/ennobled.ttf");
+    
+} 
+
+.menu-toggle {
+    display: none;
+    /* text-decoration:none; */
+}
+
+ 
+.toggle {
+    display: none;
+    text-align: center;
+    background: rgb(54, 53, 53) ;
+    border-radius: 10px;
+    padding: 20px;
+    width: 150px;
+    box-shadow:black 5px 5px 5px 5px ;
+    margin: 10px auto;
+    
+} 
+.toggle li {
+    list-style: none;
+    /* display: block; */
+    padding: 10px 0;
+    color: rgb(238, 227, 227);
+    
+}
+
+.menu-toggle:checked + .toggle{
+    display: block;
+    
+}
+
+ul a {
+    text-decoration: none;
+}
+
+ul li:hover{
+    /* background-color: rgb(111, 175, 175); */
+    border-radius: 5%;
+    border: 2px solid  rgb(111, 175, 175);
+}
+
+p:hover {
+    text-shadow: 2px 2px 20px  #2c90c6, #fff 0 -1px 2px;
+}
+
+/* animacion */
+
+
+  /* .block {
+display: block;
+  
+margin-left: 40em;
+margin-top: 15em;
+width: 50em;
+height: 30em;
+background: linear-gradient(0deg, rgb(243, 236, 236), #ad9d9d);
+  
+border-radius: 10%;
+justify-content: center;
+text-align: center;
+
+}   */
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
