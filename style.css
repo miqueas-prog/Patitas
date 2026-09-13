@@ -152,6 +152,25 @@ body {
     background-color: var(--card-border);
 }
 
+/* Botón Hamburguesa oculto en desktop por defecto */
+#menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    place-items: center;
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+#menu-toggle:hover {
+    background-color: var(--card-border);
+}
+
 .btn-primary {
     background-color: var(--accent-color);
     color: white;
@@ -409,11 +428,11 @@ body {
     place-items: center;
     cursor: pointer;
     transition: var(--transition);
-    color: #9ca3af; /* Color gris/neutro por defecto */
+    color: #9ca3af;
 }
 
 .like-btn.liked {
-    color: #ef4444; /* Color rojo solo cuando está seleccionado */
+    color: #ef4444;
 }
 
 .like-btn:hover {
@@ -687,7 +706,41 @@ footer {
     font-size: 0.9rem;
 }
 
-@media (max-width: 768px) {
+/* Media Queries para celulares y menú hamburguesa */
+@media (max-width: 850px) {
+    #menu-toggle {
+        display: grid; /* Muestra el botón hamburguesa en móviles */
+    }
+
+    .desktop-only {
+        display: none; /* Oculta el botón "Ver rescatados" en la barra superior móvil */
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--surface-color);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--card-border);
+        padding: 1.5rem 0;
+        box-shadow: var(--shadow);
+        transform: translateY(-150%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
+        z-index: 99;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
     .hero {
         grid-template-columns: 1fr;
         padding: 3rem 5%;
@@ -697,9 +750,6 @@ footer {
         font-size: 2.5rem;
     }
     .hero-image {
-        display: none;
-    }
-    .nav-links {
         display: none;
     }
     .footer-content {
