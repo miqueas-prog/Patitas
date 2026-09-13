@@ -50,6 +50,32 @@ const petsData = [
     }
 ];
 
+// Control del Menú Hamburguesa en Celulares
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    const icon = menuToggle.querySelector("i");
+    if (navLinks.classList.contains("active")) {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-xmark");
+    } else {
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+    }
+});
+
+// Cerrar menú automáticamente al hacer clic en cualquier enlace de navegación
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        const icon = menuToggle.querySelector("i");
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+    });
+});
+
 // Renderizar tarjetas de mascotas
 function renderPets(pets) {
     const grid = document.getElementById("pets-grid");
@@ -128,7 +154,6 @@ adoptionForm.addEventListener("submit", (e) => {
     const userName = document.getElementById("nombre").value;
     modal.classList.remove("active");
     
-    // Generar Diploma con Canvas
     generateCanvasCertificate(userName, selectedPetName);
     certModal.classList.add("active");
 });
@@ -139,16 +164,13 @@ function generateCanvasCertificate(userName, petName) {
     const canvas = document.getElementById("adoption-canvas");
     const ctx = canvas.getContext("2d");
 
-    // Fondo del certificado
     ctx.fillStyle = "#fef3c7";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Marco elegante
     ctx.strokeStyle = "#d97706";
     ctx.lineWidth = 6;
     ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
 
-    // Contenido del texto
     ctx.fillStyle = "#1e1108";
     ctx.font = "bold 22px 'Plus Jakarta Sans', sans-serif";
     ctx.textAlign = "center";
@@ -174,7 +196,6 @@ function generateCanvasCertificate(userName, petName) {
     ctx.fillStyle = "#78716c";
     ctx.fillText("Fecha de emisión: 2026 • Gracias por cambiar una vida", canvas.width / 2, 340);
 
-    // Enlace de descarga
     const dataURL = canvas.toDataURL("image/png");
     document.getElementById("download-cert-btn").href = dataURL;
 }
@@ -249,7 +270,7 @@ audioBtn.addEventListener("click", () => {
     }
 });
 
-// Cambio de Modo Día / Noche (Sin transición de atardecer)
+// Cambio de Modo Día / Noche (Sin transición)
 const themeToggle = document.getElementById("theme-toggle");
 const htmlElement = document.documentElement;
 
