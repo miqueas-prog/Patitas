@@ -1,4 +1,3 @@
-// Base de datos simulada de animales rescatados
 const pets = [
     {
         id: 1,
@@ -46,7 +45,6 @@ const pets = [
     }
 ];
 
-// Elementos del DOM
 const petsGrid = document.getElementById('pets-grid');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const themeToggle = document.getElementById('theme-toggle');
@@ -54,7 +52,23 @@ const petModal = document.getElementById('pet-modal');
 const closeModalBtn = document.getElementById('close-modal');
 const modalBody = document.getElementById('modal-body');
 
-// Renderizar tarjetas de animales
+// Huellas flotantes al hacer clic
+document.addEventListener('click', (e) => {
+    if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.modal-content')) return;
+
+    const paw = document.createElement('div');
+    paw.classList.add('click-paw');
+    paw.innerHTML = '<i class="fa-solid fa-paw"></i>';
+    paw.style.left = `${e.pageX}px`;
+    paw.style.top = `${e.pageY}px`;
+    
+    document.body.appendChild(paw);
+
+    setTimeout(() => {
+        paw.remove();
+    }, 800);
+});
+
 function displayPets(petsArray) {
     petsGrid.innerHTML = '';
     
@@ -70,6 +84,9 @@ function displayPets(petsArray) {
             <div class="pet-img-container">
                 <img src="${pet.img}" alt="${pet.name}">
                 <span class="pet-tag">${pet.species === 'perro' ? '🐶 Perro' : '🐱 Gato'}</span>
+                <button class="like-btn" onclick="toggleLike(event, this)" title="Dar me gusta">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
             </div>
             <div class="pet-info">
                 <h3>${pet.name}</h3>
@@ -86,7 +103,20 @@ function displayPets(petsArray) {
     });
 }
 
-// Filtrar animales por categoría
+window.toggleLike = function(e, btn) {
+    e.stopPropagation();
+    const icon = btn.querySelector('i');
+    if (icon.classList.contains('fa-regular')) {
+        icon.classList.remove('fa-regular');
+        icon.classList.add('fa-solid');
+        btn.style.transform = 'scale(1.3)';
+        setTimeout(() => btn.style.transform = 'scale(1)', 200);
+    } else {
+        icon.classList.remove('fa-solid');
+        icon.classList.add('fa-regular');
+    }
+}
+
 filterBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         filterBtns.forEach(b => b.classList.remove('active'));
@@ -102,7 +132,6 @@ filterBtns.forEach(btn => {
     });
 });
 
-// Lógica del Modal y Formulario de Adopción
 window.openPetModal = function(id) {
     const pet = pets.find(p => p.id === id);
     if (!pet) return;
@@ -127,7 +156,7 @@ window.openPetModal = function(id) {
                     <input type="tel" required placeholder="Ej: 351xxxxxxx">
                 </div>
                 <div class="form-group">
-                    <label>¿Por qué te gustaria adoptar a ${pet.name}?</label>
+                    <label>¿Por qué te gustaría adoptar a ${pet.name}?</label>
                     <textarea rows="3" required placeholder="Contanos un poco sobre tu hogar..."></textarea>
                 </div>
                 <button type="submit" class="btn-primary" style="justify-content: center; margin-top: 0.5rem;">Enviar Solicitud</button>
@@ -147,7 +176,6 @@ petModal.addEventListener('click', (e) => {
     }
 });
 
-// Simulación de envío de formulario exitoso
 window.handleAdoptionSubmit = function(e, petName) {
     e.preventDefault();
     modalBody.innerHTML = `
@@ -160,16 +188,13 @@ window.handleAdoptionSubmit = function(e, petName) {
     `;
 }
 
-// Dark / Light Mode Switcher
 themeToggle.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     
-    // Cambiar icono
     const icon = themeToggle.querySelector('i');
     icon.className = newTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 });
 
-// Inicializar la app cargando los animalitos
 displayPets(pets);
