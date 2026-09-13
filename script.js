@@ -83,8 +83,9 @@ function renderPets(pets) {
     });
 }
 
+// Función para alternar like (empieza neutro y se pone rojo al hacer click)
 function toggleLike(btn) {
-    btn.style.color = btn.style.color === "rgb(239, 68, 68)" ? "#9ca3af" : "#ef4444";
+    btn.classList.toggle("liked");
 }
 
 // Filtros de categoría
@@ -117,7 +118,7 @@ modal.addEventListener("click", (e) => {
     if (e.target === modal) modal.classList.remove("active");
 });
 
-// Manejo del formulario y activación del Certificado Canvas (Opción 2)
+// Manejo del formulario y activación del Certificado Canvas
 const adoptionForm = document.getElementById("form-adoption");
 const certModal = document.getElementById("cert-modal");
 const closeCertModal = document.getElementById("close-cert-modal");
@@ -178,7 +179,7 @@ function generateCanvasCertificate(userName, petName) {
     document.getElementById("download-cert-btn").href = dataURL;
 }
 
-// Test Interactivo de Compatibilidad (Opción 3)
+// Test Interactivo de Compatibilidad
 let quizAnswers = {};
 document.querySelectorAll(".quiz-opt").forEach(btn => {
     btn.addEventListener("click", (e) => {
@@ -204,11 +205,9 @@ function showQuizResult() {
     const resultDiv = document.getElementById("quiz-result");
     resultDiv.classList.add("active");
 
-    // Filtrar animales según coincidencia simple
     const matched = petsData.find(p => p.vivienda === quizAnswers.vivienda || p.energia === quizAnswers.energia) || petsData[0];
     document.getElementById("quiz-match-text").innerHTML = `¡El compañero ideal para vos según tus respuestas es <strong>${matched.name}</strong> (${matched.breed})!`;
     
-    // Filtrar la grilla principal automáticamente con el match
     renderPets([matched]);
 }
 
@@ -219,7 +218,7 @@ document.getElementById("reset-quiz").addEventListener("click", () => {
     renderPets(petsData);
 });
 
-// Sistema de Audio Ambiental con Web Audio API (Opción 4)
+// Sistema de Audio Ambiental con Web Audio API
 let audioCtx = null;
 let isAudioPlaying = false;
 let oscillator = null;
@@ -232,11 +231,8 @@ audioBtn.addEventListener("click", () => {
         oscillator = audioCtx.createOscillator();
         gainNode = audioCtx.createGain();
 
-        // Tono suave relajante tipo onda sinusoidal de baja frecuencia
         oscillator.type = "sine";
-        oscillator.frequency.setValueAtTime(160, audioCtx.currentTime); // Frecuencia suave
-
-        // Volumen ultra bajo para fondo agradable
+        oscillator.frequency.setValueAtTime(160, audioCtx.currentTime);
         gainNode.gain.setValueAtTime(0.03, audioCtx.currentTime);
 
         oscillator.connect(gainNode);
@@ -253,32 +249,25 @@ audioBtn.addEventListener("click", () => {
     }
 });
 
-// Transición de Atardecer al cambiar Modo Día/Noche (Opción 5)
+// Cambio de Modo Día / Noche (Sin transición de atardecer)
 const themeToggle = document.getElementById("theme-toggle");
 const htmlElement = document.documentElement;
 
 themeToggle.addEventListener("click", () => {
     const currentTheme = htmlElement.getAttribute("data-theme");
-    
-    // Activar clase de transición de atardecer en el body
-    document.body.classList.add("sunset-transition");
-
-    setTimeout(() => {
-        if (currentTheme === "light") {
-            htmlElement.setAttribute("data-theme", "dark");
-            themeToggle.innerHTML = `<i class="fa-solid fa-sun"></i>`;
-        } else {
-            htmlElement.setAttribute("data-theme", "light");
-            themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`;
-        }
-        document.body.classList.remove("sunset-transition");
-    }, 600);
+    if (currentTheme === "light") {
+        htmlElement.setAttribute("data-theme", "dark");
+        themeToggle.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+    } else {
+        htmlElement.setAttribute("data-theme", "light");
+        themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+    }
 });
 
 // Inicializar la grilla al cargar la página
 renderPets(petsData);
 
-// Generador de huellas al hacer clic (Efecto previo que se mantiene)
+// Generador de huellas al hacer clic
 document.addEventListener("click", function(e) {
     if(e.target.closest('button') || e.target.closest('a')) return;
     const paw = document.createElement("div");
