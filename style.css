@@ -4,9 +4,8 @@
     --text-primary: #1e1108;
     --text-secondary: #5c4333;
     
-    /* Colores específicos para texto sobre madera en modo día */
-    --wood-text-primary: #fef3c7; /* Beige crema cálido que resalta en la madera */
-    --wood-text-secondary: #d4b299; /* Tono madera claro para subtítulos */
+    --wood-text-primary: #fef3c7; 
+    --wood-text-secondary: #d4b299; 
 
     --accent-color: #d97706;
     --accent-hover: #b45309;
@@ -14,7 +13,7 @@
     --badge-bg: #fef3c7;
     --shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.25);
     --radius: 16px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: background-color 1s ease, color 1s ease, border-color 1s ease;
 }
 
 [data-theme="dark"] {
@@ -48,10 +47,39 @@ body {
         repeating-linear-gradient(90deg, transparent, transparent 55px, rgba(0, 0, 0, 0.22) 58px, transparent 60px),
         radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.12) 0%, transparent 70%);
     color: var(--text-primary);
-    transition: var(--transition);
+    transition: background-color 1.2s ease-in-out;
     line-height: 1.6;
     position: relative;
     overflow-x: hidden;
+}
+
+/* Efecto transitorio de atardecer en body al cambiar de tema (Opción 5) */
+body.sunset-transition {
+    background-color: #7c2d12 !important;
+    background-image: radial-gradient(circle at 50% 30%, #ea580c 0%, #2b170c 80%) !important;
+}
+
+/* Botón flotante de audio ambiental (Opción 4) */
+#ambient-audio-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+    background: var(--surface-color);
+    border: 2px solid var(--card-border);
+    color: var(--accent-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+#ambient-audio-btn:hover {
+    transform: scale(1.1);
 }
 
 .click-paw {
@@ -165,7 +193,6 @@ body {
     margin: 0 auto;
 }
 
-/* Textos sobre fondo de madera en la sección Hero */
 .hero-content h1 {
     font-size: 3.5rem;
     font-weight: 800;
@@ -228,6 +255,48 @@ body {
     font-size: 1.8rem;
 }
 
+/* Sección Test de Compatibilidad (Opción 3) */
+.compatibility-section {
+    padding: 4rem 5%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--surface-color);
+    border-radius: var(--radius);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow);
+}
+
+.compatibility-section .section-title h2 {
+    color: var(--text-primary);
+}
+
+.compatibility-section .section-title p {
+    color: var(--text-secondary);
+}
+
+.quiz-step {
+    display: none;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.quiz-step.active {
+    display: block;
+}
+
+.quiz-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .catalog-section {
     padding: 5rem 5%;
     max-width: 1300px;
@@ -239,7 +308,6 @@ body {
     margin-bottom: 3rem;
 }
 
-/* Títulos de sección sobre fondo de madera (Catálogo / Buscá a tu próximo compañero) */
 .catalog-section .section-title h2 {
     font-size: 2.5rem;
     font-weight: 800;
@@ -251,7 +319,6 @@ body {
     color: var(--wood-text-secondary);
 }
 
-/* Títulos de sección sobre fondo blanco/superficie (Cómo funciona) */
 .steps-section .section-title h2 {
     font-size: 2.5rem;
     font-weight: 800;
@@ -379,6 +446,7 @@ body {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .pet-details-tags span {
@@ -405,7 +473,6 @@ body {
     border-bottom: 1px solid var(--card-border);
 }
 
-/* Tarjetas de pasos sobre fondo de madera */
 .step-card {
     padding: 2.5rem;
     border-radius: var(--radius);
@@ -496,6 +563,21 @@ body {
 
 .close-modal:hover {
     color: var(--text-primary);
+}
+
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow-x: auto;
+}
+
+#adoption-canvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid var(--card-border);
+    box-shadow: var(--shadow);
 }
 
 .adoption-form {
