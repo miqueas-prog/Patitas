@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patitas — Encontrá a tu compañero ideal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-paw"></i>
+            <span>Patitas</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#catalogo">Adoptá</a>
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="nav-actions">
+            <button id="theme-toggle" aria-label="Cambiar tema">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <a href="#catalogo" class="btn-primary">Ver rescatados</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">🏠 Más de 120 familias felices</span>
+            <h1>No compres un amigo,<br><span>adoptá una historia</span> de amor.</h1>
+            <p>Conectamos animales rescatados que buscan una segunda oportunidad con personas listas para cambiar sus vidas.</p>
+            <div class="hero-buttons">
+                <a href="#catalogo" class="btn-primary btn-lg">Explorar animales <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-card card-1">
+                <i class="fa-solid fa-heart" style="color: #ff5c5c;"></i>
+                <div>
+                    <strong>¡Nuevo ingreso!</strong>
+                    <p>Lucas ya está listo</p>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80" alt="Perrito feliz">
+        </div>
+    </section>
+
+    <!-- Filtros y Catálogo -->
+    <section id="catalogo" class="catalog-section">
+        <div class="section-title">
+            <h2>Buscá a tu próximo compañero</h2>
+            <p>Filtros rápidos para encontrar exactamente lo que buscás</p>
+        </div>
+
+        <!-- Filtros interactivos -->
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="perro">🐶 Perros</button>
+            <button class="filter-btn" data-filter="gato">🐱 Gatos</button>
+            <button class="filter-btn" data-filter="otro" disabled>🐰 Otros (Pronto)</button>
+        </div>
+
+        <!-- Grilla de Animales -->
+        <div class="pets-grid" id="pets-grid">
+            <!-- Se llena dinámicamente con JS -->
+        </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section id="como-funciona" class="steps-section">
+        <div class="section-title">
+            <h2>¿Cómo es el proceso?</h2>
+            <p>Simple, transparente y pensado para el bienestar animal</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3>Elegí</h3>
+                <p>Navegá por nuestro catálogo y enamorate de tu próximo compañero de vida.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3>Postulate</h3>
+                <p>Completá el formulario breve para conocernos un poco más y asegurar un hogar apto.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3>¡A casa!</h3>
+                <p>Coordinamos la visita, el seguimiento y el gran día de bienvenida a su nuevo hogar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Detalles / Adopción -->
+    <div class="modal-overlay" id="pet-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fa-solid fa-paw"></i>
+                <span>Patitas</span>
+                <p>Dando amor a cuatro patas en cada rincón.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <a href="#catalogo">Adoptar</a>
+                <a href="#como-funciona">Proceso</a>
+            </div>
+            <div class="footer-social">
+                <h4>Seguinos</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Patitas. Creado con ❤️ por Miqueas.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
