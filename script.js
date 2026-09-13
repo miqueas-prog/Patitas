@@ -55,9 +55,10 @@ const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
 menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+    const isOpen = navLinks.classList.toggle("active");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
     const icon = menuToggle.querySelector("i");
-    if (navLinks.classList.contains("active")) {
+    if (isOpen) {
         icon.classList.remove("fa-bars");
         icon.classList.add("fa-xmark");
     } else {
@@ -70,6 +71,7 @@ menuToggle.addEventListener("click", () => {
 navLinks.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
         navLinks.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
         const icon = menuToggle.querySelector("i");
         icon.classList.remove("fa-xmark");
         icon.classList.add("fa-bars");
@@ -109,9 +111,23 @@ function renderPets(pets) {
     });
 }
 
-// Función para alternar like (empieza neutro y se pone rojo al hacer click)
+// Alternar like: cambia de color, hace un pop y (al activarse) suelta un corazón flotante
 function toggleLike(btn) {
-    btn.classList.toggle("liked");
+    const nowLiked = btn.classList.toggle("liked");
+
+    btn.classList.add("pop");
+    setTimeout(() => btn.classList.remove("pop"), 400);
+
+    if (nowLiked) {
+        const rect = btn.getBoundingClientRect();
+        const heart = document.createElement("div");
+        heart.className = "click-paw";
+        heart.innerHTML = "❤️";
+        heart.style.left = `${rect.left + rect.width / 2 + window.scrollX}px`;
+        heart.style.top = `${rect.top + rect.height / 2 + window.scrollY}px`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 800);
+    }
 }
 
 // Filtros de categoría
