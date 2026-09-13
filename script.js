@@ -1,200 +1,291 @@
-const pets = [
+// Base de datos de mascotas con atributos para el Test de Compatibilidad
+const petsData = [
     {
         id: 1,
-        name: "Lucas",
-        species: "perro",
-        breed: "Mestizo Alegre",
-        age: "1 año",
-        size: "Mediano",
-        gender: "Macho",
-        img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80",
-        bio: "Lucas fue rescatado en la esquina del barrio. Es súper enérgico, ama correr detrás de la pelota y se lleva genial con otros perritos."
+        name: "Cacho",
+        breed: "Beagle Mix",
+        type: "perro",
+        age: "2 años",
+        location: "Córdoba",
+        image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80",
+        vivienda: "casa",
+        tiempo: "mucho",
+        energia: "jugueton"
     },
     {
         id: 2,
         name: "Luna",
-        species: "gato",
-        breed: "Siamés Mezcla",
-        age: "8 meses",
-        size: "Pequeño",
-        gender: "Hembra",
-        img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80",
-        bio: "Luna es muy tranquila y amorosa. Le encanta dormir en las piernas y mirar por la ventana. Ya está castrada y vacunada."
+        breed: "Siamés",
+        type: "gato",
+        age: "1 año",
+        location: "Alta Gracia",
+        image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80",
+        vivienda: "depto",
+        tiempo: "poco",
+        energia: "tranquilo"
     },
     {
         id: 3,
-        name: "Bruno",
-        species: "perro",
-        breed: "Labrador Retriever Mix",
-        age: "3 años",
-        size: "Grande",
-        gender: "Macho",
-        img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=80",
-        bio: "Bruno es un caballero pacífico. Ideal para casas con patio grande. Muy protector, leal y paciente con los chicos."
+        name: "Simón",
+        breed: "Mestizo Mediano",
+        type: "perro",
+        age: "4 años",
+        location: "Carlos Paz",
+        image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80",
+        vivienda: "patio",
+        tiempo: "medio",
+        energia: "jugueton"
     },
     {
         id: 4,
         name: "Mila",
-        species: "gato",
         breed: "Europeo Común",
-        age: "2 años",
-        size: "Pequeño",
-        gender: "Hembra",
-        img: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80",
-        bio: "Mila es independiente pero muy mimosa cuando agarra confianza. Le gusta jugar con juguetes colgantes."
+        type: "gato",
+        age: "3 años",
+        location: "Córdoba",
+        image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80",
+        vivienda: "depto",
+        tiempo: "medio",
+        energia: "tranquilo"
     }
 ];
 
-const petsGrid = document.getElementById('pets-grid');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const themeToggle = document.getElementById('theme-toggle');
-const petModal = document.getElementById('pet-modal');
-const closeModalBtn = document.getElementById('close-modal');
-const modalBody = document.getElementById('modal-body');
+// Renderizar tarjetas de mascotas
+function renderPets(pets) {
+    const grid = document.getElementById("pets-grid");
+    grid.innerHTML = "";
 
-// Huellas flotantes al hacer clic
-document.addEventListener('click', (e) => {
-    if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.modal-content')) return;
-
-    const paw = document.createElement('div');
-    paw.classList.add('click-paw');
-    paw.innerHTML = '<i class="fa-solid fa-paw"></i>';
-    paw.style.left = `${e.pageX}px`;
-    paw.style.top = `${e.pageY}px`;
-    
-    document.body.appendChild(paw);
-
-    setTimeout(() => {
-        paw.remove();
-    }, 800);
-});
-
-function displayPets(petsArray) {
-    petsGrid.innerHTML = '';
-    
-    if(petsArray.length === 0) {
-        petsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary);">No hay animalitos disponibles en esta categoría por ahora.</p>`;
+    if (pets.length === 0) {
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--wood-text-secondary);">No se encontraron mascotas con este criterio.</p>`;
         return;
     }
 
-    petsArray.forEach(pet => {
-        const card = document.createElement('div');
-        card.classList.add('pet-card');
+    pets.forEach(pet => {
+        const card = document.createElement("div");
+        card.className = "pet-card";
         card.innerHTML = `
             <div class="pet-img-container">
-                <img src="${pet.img}" alt="${pet.name}">
-                <span class="pet-tag">${pet.species === 'perro' ? '🐶 Perro' : '🐱 Gato'}</span>
-                <button class="like-btn" onclick="toggleLike(event, this)" title="Dar me gusta">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
+                <img src="${pet.image}" alt="${pet.name}">
+                <span class="pet-tag">${pet.age}</span>
+                <button class="like-btn" onclick="toggleLike(this)"><i class="fa-solid fa-heart"></i></button>
             </div>
             <div class="pet-info">
                 <h3>${pet.name}</h3>
-                <p class="breed">${pet.breed}</p>
+                <p class="breed">${pet.breed} • ${pet.location}</p>
                 <div class="pet-details-tags">
-                    <span>${pet.age}</span>
-                    <span>${pet.size}</span>
-                    <span>${pet.gender}</span>
+                    <span><i class="fa-solid fa-house"></i> ${pet.vivienda}</span>
+                    <span><i class="fa-solid fa-bolt"></i> ${pet.energia}</span>
                 </div>
-                <button class="btn-primary" onclick="openPetModal(${pet.id})">Conocer más</button>
+                <button class="btn-primary" onclick="openAdoptionModal('${pet.name}')">Adoptar a ${pet.name}</button>
             </div>
         `;
-        petsGrid.appendChild(card);
+        grid.appendChild(card);
     });
 }
 
-window.toggleLike = function(e, btn) {
-    e.stopPropagation();
-    const icon = btn.querySelector('i');
-    if (icon.classList.contains('fa-regular')) {
-        icon.classList.remove('fa-regular');
-        icon.classList.add('fa-solid');
-        btn.style.transform = 'scale(1.3)';
-        setTimeout(() => btn.style.transform = 'scale(1)', 200);
-    } else {
-        icon.classList.remove('fa-solid');
-        icon.classList.add('fa-regular');
-    }
+function toggleLike(btn) {
+    btn.style.color = btn.style.color === "rgb(239, 68, 68)" ? "#9ca3af" : "#ef4444";
 }
 
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        
-        const filter = e.target.getAttribute('data-filter');
-        if (filter === 'all') {
-            displayPets(pets);
+// Filtros de categoría
+document.querySelectorAll(".filters-container .filter-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        document.querySelectorAll(".filters-container .filter-btn").forEach(b => b.classList.remove("active"));
+        e.target.classList.add("active");
+        const filter = e.target.getAttribute("data-filter");
+        if (filter === "all") {
+            renderPets(petsData);
         } else {
-            const filtered = pets.filter(pet => pet.species === filter);
-            displayPets(filtered);
+            renderPets(petsData.filter(p => p.type === filter));
         }
     });
 });
 
-window.openPetModal = function(id) {
-    const pet = pets.find(p => p.id === id);
-    if (!pet) return;
+// Modal Postulación Adopción
+const modal = document.getElementById("adoption-modal");
+const closeModal = document.getElementById("close-modal");
+let selectedPetName = "";
 
-    modalBody.innerHTML = `
-        <div style="display: grid; gap: 1.5rem;">
-            <img src="${pet.img}" alt="${pet.name}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 12px;">
-            <div>
-                <h2>¡Hola, soy ${pet.name}!</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">${pet.breed} • ${pet.age}</p>
-                <p style="margin-top: 1rem;">${pet.bio}</p>
-            </div>
-            <hr style="border: 0; border-top: 1px solid var(--card-border);">
-            <h3>Formulario de Adopción Responsable</h3>
-            <form class="adoption-form" onsubmit="handleAdoptionSubmit(event, '${pet.name}')">
-                <div class="form-group">
-                    <label>Tu Nombre Completo</label>
-                    <input type="text" required placeholder="Ej: Miqueas Pérez">
-                </div>
-                <div class="form-group">
-                    <label>Teléfono de Contacto</label>
-                    <input type="tel" required placeholder="Ej: 351xxxxxxx">
-                </div>
-                <div class="form-group">
-                    <label>¿Por qué te gustaría adoptar a ${pet.name}?</label>
-                    <textarea rows="3" required placeholder="Contanos un poco sobre tu hogar..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary" style="justify-content: center; margin-top: 0.5rem;">Enviar Solicitud</button>
-            </form>
-        </div>
-    `;
-    petModal.classList.add('active');
+function openAdoptionModal(petName) {
+    selectedPetName = petName;
+    document.getElementById("modal-pet-title").innerText = `Postulación para adoptar a ${petName}`;
+    modal.classList.add("active");
 }
 
-closeModalBtn.addEventListener('click', () => {
-    petModal.classList.remove('active');
+closeModal.addEventListener("click", () => modal.classList.remove("active"));
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.classList.remove("active");
 });
 
-petModal.addEventListener('click', (e) => {
-    if (e.target === petModal) {
-        petModal.classList.remove('active');
+// Manejo del formulario y activación del Certificado Canvas (Opción 2)
+const adoptionForm = document.getElementById("form-adoption");
+const certModal = document.getElementById("cert-modal");
+const closeCertModal = document.getElementById("close-cert-modal");
+
+adoptionForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const userName = document.getElementById("nombre").value;
+    modal.classList.remove("active");
+    
+    // Generar Diploma con Canvas
+    generateCanvasCertificate(userName, selectedPetName);
+    certModal.classList.add("active");
+});
+
+closeCertModal.addEventListener("click", () => certModal.classList.remove("active"));
+
+function generateCanvasCertificate(userName, petName) {
+    const canvas = document.getElementById("adoption-canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Fondo del certificado
+    ctx.fillStyle = "#fef3c7";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Marco elegante
+    ctx.strokeStyle = "#d97706";
+    ctx.lineWidth = 6;
+    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+    // Contenido del texto
+    ctx.fillStyle = "#1e1108";
+    ctx.font = "bold 22px 'Plus Jakarta Sans', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("CERTIFICADO DE ADOPCIÓN RESPONSABLE", canvas.width / 2, 70);
+
+    ctx.font = "14px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "#5c4333";
+    ctx.fillText("Otorgado con mucho amor por Fundación Patitas a:", canvas.width / 2, 120);
+
+    ctx.font = "bold 26px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "#d97706";
+    ctx.fillText(userName, canvas.width / 2, 170);
+
+    ctx.font = "14px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "#5c4333";
+    ctx.fillText("Por brindarle un cálido hogar y una segunda oportunidad a:", canvas.width / 2, 220);
+
+    ctx.font = "bold 24px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "#1e1108";
+    ctx.fillText(`🐾 ${petName} 🐾`, canvas.width / 2, 270);
+
+    ctx.font = "italic 12px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "#78716c";
+    ctx.fillText("Fecha de emisión: 2026 • Gracias por cambiar una vida", canvas.width / 2, 340);
+
+    // Enlace de descarga
+    const dataURL = canvas.toDataURL("image/png");
+    document.getElementById("download-cert-btn").href = dataURL;
+}
+
+// Test Interactivo de Compatibilidad (Opción 3)
+let quizAnswers = {};
+document.querySelectorAll(".quiz-opt").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        const q = e.target.getAttribute("data-q");
+        const val = e.target.getAttribute("data-val");
+        quizAnswers[q] = val;
+
+        document.getElementById("quiz-step-1").classList.remove("active");
+        document.getElementById("quiz-step-2").classList.remove("active");
+        document.getElementById("quiz-step-3").classList.remove("active");
+
+        if (q === "vivienda") {
+            document.getElementById("quiz-step-2").classList.add("active");
+        } else if (q === "tiempo") {
+            document.getElementById("quiz-step-3").classList.add("active");
+        } else if (q === "energia") {
+            showQuizResult();
+        }
+    });
+});
+
+function showQuizResult() {
+    const resultDiv = document.getElementById("quiz-result");
+    resultDiv.classList.add("active");
+
+    // Filtrar animales según coincidencia simple
+    const matched = petsData.find(p => p.vivienda === quizAnswers.vivienda || p.energia === quizAnswers.energia) || petsData[0];
+    document.getElementById("quiz-match-text").innerHTML = `¡El compañero ideal para vos según tus respuestas es <strong>${matched.name}</strong> (${matched.breed})!`;
+    
+    // Filtrar la grilla principal automáticamente con el match
+    renderPets([matched]);
+}
+
+document.getElementById("reset-quiz").addEventListener("click", () => {
+    quizAnswers = {};
+    document.getElementById("quiz-result").classList.remove("active");
+    document.getElementById("quiz-step-1").classList.add("active");
+    renderPets(petsData);
+});
+
+// Sistema de Audio Ambiental con Web Audio API (Opción 4)
+let audioCtx = null;
+let isAudioPlaying = false;
+let oscillator = null;
+let gainNode = null;
+
+const audioBtn = document.getElementById("ambient-audio-btn");
+audioBtn.addEventListener("click", () => {
+    if (!isAudioPlaying) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        oscillator = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
+
+        // Tono suave relajante tipo onda sinusoidal de baja frecuencia
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(160, audioCtx.currentTime); // Frecuencia suave
+
+        // Volumen ultra bajo para fondo agradable
+        gainNode.gain.setValueAtTime(0.03, audioCtx.currentTime);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.start();
+        isAudioPlaying = true;
+        audioBtn.innerHTML = `<i class="fa-solid fa-volume-high" style="color: var(--accent-color);"></i>`;
+    } else {
+        if (oscillator) oscillator.stop();
+        if (audioCtx) audioCtx.close();
+        isAudioPlaying = false;
+        audioBtn.innerHTML = `<i class="fa-solid fa-volume-xmark"></i>`;
     }
 });
 
-window.handleAdoptionSubmit = function(e, petName) {
-    e.preventDefault();
-    modalBody.innerHTML = `
-        <div style="text-align: center; padding: 2rem 0;">
-            <i class="fa-solid fa-circle-check" style="font-size: 4rem; color: #22c55e; margin-bottom: 1rem;"></i>
-            <h2>¡Solicitud Enviada con Éxito!</h2>
-            <p style="color: var(--text-secondary); margin-top: 1rem;">Gracias por querer cambiar la vida de <strong>${petName}</strong>. Nos pondremos en contacto con vos muy pronto para coordinar los siguientes pasos.</p>
-            <button class="btn-primary" onclick="petModal.classList.remove('active')" style="margin-top: 2rem;">Cerrar ventana</button>
-        </div>
-    `;
-}
+// Transición de Atardecer al cambiar Modo Día/Noche (Opción 5)
+const themeToggle = document.getElementById("theme-toggle");
+const htmlElement = document.documentElement;
 
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
+themeToggle.addEventListener("click", () => {
+    const currentTheme = htmlElement.getAttribute("data-theme");
     
-    const icon = themeToggle.querySelector('i');
-    icon.className = newTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    // Activar clase de transición de atardecer en el body
+    document.body.classList.add("sunset-transition");
+
+    setTimeout(() => {
+        if (currentTheme === "light") {
+            htmlElement.setAttribute("data-theme", "dark");
+            themeToggle.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+        } else {
+            htmlElement.setAttribute("data-theme", "light");
+            themeToggle.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+        }
+        document.body.classList.remove("sunset-transition");
+    }, 600);
 });
 
-displayPets(pets);
+// Inicializar la grilla al cargar la página
+renderPets(petsData);
+
+// Generador de huellas al hacer clic (Efecto previo que se mantiene)
+document.addEventListener("click", function(e) {
+    if(e.target.closest('button') || e.target.closest('a')) return;
+    const paw = document.createElement("div");
+    paw.className = "click-paw";
+    paw.innerHTML = "🐾";
+    paw.style.left = `${e.pageX}px`;
+    paw.style.top = `${e.pageY}px`;
+    document.body.appendChild(paw);
+    setTimeout(() => paw.remove(), 800);
+});
