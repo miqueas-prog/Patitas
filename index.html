@@ -3,79 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patitas — Encontrá a tu compañero ideal</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts & Icons -->
+    <title>Patitas - Adopción Responsable</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header / Navbar -->
-    <header class="navbar">
+    <!-- Botón de Audio Ambiental Discreto -->
+    <button id="ambient-audio-btn" title="Activar sonido ambiental relajante">
+        <i class="fa-solid fa-volume-xmark"></i>
+    </button>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-paw"></i>
-            <span>Patitas</span>
+            <i class="fa-solid fa-paw"></i> Patitas
         </div>
-        <nav class="nav-links">
-            <a href="#catalogo">Adoptá</a>
+        <div class="nav-links">
+            <a href="#inicio">Adoptá</a>
+            <a href="#compatibilidad">Test Compatibilidad</a>
             <a href="#como-funciona">Cómo funciona</a>
-            <!-- Enlace directo a tu página MH Tech -->
-            <a href="https://miqueas-prog.github.io/MH-Tech/" target="_blank" rel="noopener noreferrer">Contacto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i></a>
-        </nav>
+            <a href="#contacto" target="_blank">Contacto <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i></a>
+        </div>
         <div class="nav-actions">
-            <button id="theme-toggle" aria-label="Cambiar tema">
+            <button id="theme-toggle" aria-label="Cambiar modo día/noche">
                 <i class="fa-solid fa-moon"></i>
             </button>
             <a href="#catalogo" class="btn-primary">Ver rescatados</a>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Sección Hero -->
+    <header class="hero" id="inicio">
         <div class="hero-content">
-            <span class="badge">🏠 Más de 120 familias felices</span>
-            <h1>No compres un amigo,<br><span>adoptá una historia</span> de amor.</h1>
-            <p>Conectamos animales rescatados que buscan una segunda oportunidad con personas listas para cambiar sus vidas.</p>
-            <div class="hero-buttons">
-                <a href="#catalogo" class="btn-primary btn-lg">Explorar animales <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="badge">
+                <i class="fa-solid fa-house-chimney-heart"></i> Más de 120 familias felices
             </div>
+            <h1>No compres un amigo, <span>adoptá una historia</span> de amor.</h1>
+            <p>Conectamos animales rescatados que buscan una segunda oportunidad con personas listas para cambiar sus vidas.</p>
+            <a href="#catalogo" class="btn-primary btn-lg">
+                <i class="fa-solid fa-heart"></i> Empezar búsqueda
+            </a>
         </div>
         <div class="hero-image">
-            <div class="floating-card card-1">
-                <i class="fa-solid fa-heart" style="color: #ff5c5c;"></i>
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80" alt="Perrito feliz adoptado">
+            <div class="floating-card">
+                <i class="fa-solid fa-face-smile" style="color: var(--accent-color);"></i>
                 <div>
                     <strong>¡Nuevo ingreso!</strong>
-                    <p>Lucas ya está listo</p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Cacho busca hogar</p>
                 </div>
             </div>
-            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80" alt="Perrito feliz">
+        </div>
+    </header>
+
+    <!-- Sección de Test Interactivo de Compatibilidad (Nueva Opción 3) -->
+    <section class="compatibility-section" id="compatibilidad">
+        <div class="section-title">
+            <h2>Test de Compatibilidad</h2>
+            <p>Respondé 3 simples preguntas para descubrir qué peludo se adapta mejor a tu hogar</p>
+        </div>
+        <div class="quiz-container">
+            <div id="quiz-step-1" class="quiz-step active">
+                <h3>1. ¿Qué tipo de vivienda tenés?</h3>
+                <div class="quiz-options">
+                    <button class="filter-btn quiz-opt" data-q="vivienda" data-val="depto">Departamento</button>
+                    <button class="filter-btn quiz-opt" data-q="vivienda" data-val="casa">Casa con patio chico</button>
+                    <button class="filter-btn quiz-opt" data-q="vivienda" data-val="patio">Casa con gran parque</button>
+                </div>
+            </div>
+            <div id="quiz-step-2" class="quiz-step">
+                <h3>2. ¿Cuánto tiempo libre pasás en casa al día?</h3>
+                <div class="quiz-options">
+                    <button class="filter-btn quiz-opt" data-q="tiempo" data-val="poco">Poco (Menos de 4 hs)</button>
+                    <button class="filter-btn quiz-opt" data-q="tiempo" data-val="medio">Medio (Entre 4 y 8 hs)</button>
+                    <button class="filter-btn quiz-opt" data-q="tiempo" data-val="mucho">Mucho (Trabajo remoto / Todo el día)</button>
+                </div>
+            </div>
+            <div id="quiz-step-3" class="quiz-step">
+                <h3>3. ¿Preferís un compañero activo o tranquilo?</h3>
+                <div class="quiz-options">
+                    <button class="filter-btn quiz-opt" data-q="energia" data-val="tranquilo">Tranquilo / Senior</button>
+                    <button class="filter-btn quiz-opt" data-q="energia" data-val="jugueton">Juguetón y enérgico</button>
+                </div>
+            </div>
+            <div id="quiz-result" class="quiz-step" style="text-align: center;">
+                <h3 style="color: var(--accent-color);">¡Resultado listo! 🐾</h3>
+                <p id="quiz-match-text" style="margin: 1rem 0; color: var(--wood-text-secondary);"></p>
+                <button class="btn-primary" id="reset-quiz">Reiniciar test</button>
+            </div>
         </div>
     </section>
 
-    <!-- Filtros y Catálogo -->
-    <section id="catalogo" class="catalog-section">
+    <!-- Sección Catálogo -->
+    <main class="catalog-section" id="catalogo">
         <div class="section-title">
             <h2>Buscá a tu próximo compañero</h2>
             <p>Filtros rápidos para encontrar exactamente lo que buscás</p>
         </div>
 
-        <!-- Filtros interactivos -->
         <div class="filters-container">
             <button class="filter-btn active" data-filter="all">Todos</button>
-            <button class="filter-btn" data-filter="perro">🐶 Perros</button>
-            <button class="filter-btn" data-filter="gato">🐱 Gatos</button>
-            <button class="filter-btn" data-filter="otro" disabled>🐰 Otros (Pronto)</button>
+            <button class="filter-btn" data-filter="perro"><i class="fa-solid fa-dog"></i> Perros</button>
+            <button class="filter-btn" data-filter="gato"><i class="fa-solid fa-cat"></i> Gatos</button>
+            <button class="filter-btn" data-filter="otro"><i class="fa-solid fa-carrot"></i> Otros (Pronto)</button>
         </div>
 
-        <!-- Grilla de Animales -->
         <div class="pets-grid" id="pets-grid">
-            <!-- Se llena dinámicamente con JS -->
+            <!-- Las tarjetas se cargan mediante JavaScript -->
         </div>
-    </section>
+    </main>
 
-    <!-- Cómo funciona -->
-    <section id="como-funciona" class="steps-section">
+    <!-- Sección Cómo funciona -->
+    <section class="steps-section" id="como-funciona">
         <div class="section-title">
             <h2>¿Cómo es el proceso?</h2>
             <p>Simple, transparente y pensado para el bienestar animal</p>
@@ -99,12 +143,51 @@
         </div>
     </section>
 
-    <!-- Modal de Detalles / Adopción -->
-    <div class="modal-overlay" id="pet-modal">
+    <!-- Modal de Formulario de Adopción -->
+    <div class="modal-overlay" id="adoption-modal">
         <div class="modal-content">
             <button class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-            <div id="modal-body">
-                <!-- Contenido dinámico -->
+            <h2 id="modal-pet-title">Postulación para adoptar</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Completá tus datos para dar el primer paso.</p>
+            
+            <form class="adoption-form" id="form-adoption">
+                <div class="form-group">
+                    <label for="nombre">Nombre y Apellido</label>
+                    <input type="text" id="nombre" required placeholder="Ej: Miqueas Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono de contacto</label>
+                    <input type="tel" id="telefono" required placeholder="+54 9 ...">
+                </div>
+                <div class="form-group">
+                    <label for="motivo">¿Por qué te gustaria adoptar?</label>
+                    <textarea id="motivo" rows="3" required placeholder="Contanos brevemente sobre tu hogar..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="justify-content: center;">Enviar postulación</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Certificado de Adopción (Nueva Opción 2 - Generador con Canvas) -->
+    <div class="modal-overlay" id="cert-modal">
+        <div class="modal-content" style="text-align: center;">
+            <button class="close-modal" id="close-cert-modal"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="color: var(--accent-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-award"></i> ¡Felicitaciones!</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Tu certificado oficial de adopción en Patitas está listo.</p>
+            
+            <!-- Lienzo Canvas del Diploma -->
+            <div class="canvas-container">
+                <canvas id="adoption-canvas" width="600" height="400"></canvas>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
+                <a id="download-cert-btn" class="btn-primary" download="certificado-patitas.png">
+                    <i class="fa-solid fa-download"></i> Descargar Imagen (.png)
+                </a>
             </div>
         </div>
     </div>
@@ -113,30 +196,33 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <i class="fa-solid fa-paw"></i>
-                <span>Patitas</span>
-                <p>Dando amor a cuatro patas en cada rincón.</p>
+                <div class="logo">
+                    <i class="fa-solid fa-paw"></i> Patitas
+                </div>
+                <p>Dedicados a rescatar, rehabilitar y encontrar hogares llenos de amor para animales en situación de calle.</p>
             </div>
             <div class="footer-links">
-                <h4>Navegación</h4>
-                <a href="#catalogo">Adoptar</a>
+                <h4>Enlaces rápidos</h4>
+                <a href="#inicio">Inicio</a>
+                <a href="#compatibilidad">Test Compatibilidad</a>
+                <a href="#catalogo">Catálogo</a>
                 <a href="#como-funciona">Proceso</a>
-                <a href="https://miqueas-prog.github.io/MH-Tech/" target="_blank" rel="noopener noreferrer">Soporte MH Tech</a>
             </div>
             <div class="footer-social">
                 <h4>Seguinos</h4>
                 <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Patitas. Desarrollado por <a href="https://miqueas-prog.github.io/MH-Tech/" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">MH Tech (Miqueas)</a>.</p>
+            <p>&copy; 2026 Patitas - Adopción Responsable. Hecho con amor.</p>
         </div>
     </footer>
 
+    <!-- Script JavaScript Principal -->
     <script src="script.js"></script>
 </body>
 </html>
